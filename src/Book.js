@@ -2,6 +2,11 @@ import React, { Component } from 'react'
 
 
 class Book extends Component {
+  displayAuthors = (author) => {
+    return `<span className="book-author-name" key={${author}}>{${author}}</span>`
+  }
+
+
   render () {
     const { book } = this.props
     return (
@@ -9,10 +14,7 @@ class Book extends Component {
         <div className="book-top">
           <div className="book-cover"
               style={{
-                // backgroundImage: `url(${book.imageLinks.smallThumbnail})`
-                backgroundImage: `url(${book.imageLinks ? book.imageLinks.thumbnail : ""})`
-
-
+                backgroundImage: `url(${book.imageLinks ? book.imageLinks.thumbnail : ''})`
               }}>
           </div>
 
@@ -29,8 +31,7 @@ class Book extends Component {
         {/* TODO this.props.values */}
         <div className="book-title">{book.title}</div>
         <div className="book-authors">
-
-          {/* {book.authors} */}
+          {book.authors ? book.authors.join(', ') : ''}
 
           {/* {book.authors.map( (author) => (
             <span className="book-author-name" key={author}>{author}</span>

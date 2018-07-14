@@ -21,7 +21,8 @@ class App extends Component {
      */
     screen: 'main', // main, search
     stack: [],
-    searchQuery: []
+    searchQuery: [],
+    searchString: ''
   }
   componentDidMount() {
     BooksAPI.getAll().then((books) => {
@@ -29,10 +30,6 @@ class App extends Component {
     })
     // LISTA KSIĄŻEK
     //BooksAPI.getAll().then(books => console.log(books))
-
-
-
-
     //BooksAPI.update(book, shelf).then(() => {/* Update the book shelf and application state */})))
   }
 
@@ -41,39 +38,21 @@ class App extends Component {
       BooksAPI.search(query).then(books => {
         if (books.error) {
           this.setState({ searchQuery: [] })
+          this.setState({ searchString: books.error })
         } else {
           this.setState({ searchQuery: books })
         }
       })
+      this.setState({ searchString: query })
+
     } else {
        this.setState({ searchQuery: [] })
+       this.setState({ searchString: '' })
     }
 
 
     BooksAPI.search(query).then(books => console.log(books))
   }
-
-
-
-
-
-//   searchBooksResults = (query) => {
-//     this.setState({query})
-//         if(query){
-//             BooksAPI.search(query).then((books) => {
-//                 if(books instanceof Array)  {
-//                     //add books to state
-//                     this.setState({ search: books })
-//                 }
-//                 else {
-//                     //set book state to empty array
-//                     this.setState({ search: [] })
-//                 }
-//
-//             }
-//         )
-//     }
-// }
 
 
 
@@ -91,28 +70,35 @@ class App extends Component {
 
 
   render() {
-    const { stack , searchQuery } = this.state
+    const { stack , searchQuery, searchString } = this.state
     return (
       <div className="app">
 
         <Route exact path="/" render={() => (
           <div className="list-books">
+
             <Header />
+
             <Library
               books={stack}
             />
+
             <OpenSearch
               onNavigate={() => this.setState({ screen: 'search' })}
             />
+
           </div>
         )}/>
 
         <Route path='/search' render={() => (
+
           <SearchBook
             books={searchQuery}
+            query={searchString}
             updateQuery={this.searchResult}
             onNavigate={() => this.setState({ screen: 'main' })}
           />
+          
         )}/>
 
       </div>

@@ -12,60 +12,86 @@ class SearchBook extends Component {
     books: PropTypes.array.isRequired,
     updateQuery: PropTypes.func.isRequired
   }
-
+  state = {
+    searchTerms: [
+      'Android',
+      'Art',
+      'Artificial Intelligence',
+      'Astronomy', 'Austen',
+      'Baseball', 'Basketball',
+      'Bhagat', 'Biography', 'Brief',
+      'Business', 'Camus', 'Cervantes',
+      'Christie', 'Classics', 'Comics', 'Cook',
+      'Cricket', 'Cycling', 'Desai', 'Design',
+      'Development', 'Digital Marketing',
+      'Drama', 'Drawing', 'Dumas', 'Education',
+      'Everything', 'Fantasy', 'Film', 'Finance',
+      'First', 'Fitness', 'Football', 'Future', 'Games', 'Gandhi', 'Homer', 'Horror', 'Hugo', 'Ibsen',
+      'Journey', 'Kafka', 'King', 'Lahiri', 'Larsson', 'Learn', 'Literary Fiction', 'Make', 'Manage', 'Marquez',
+      'Money', 'Mystery', 'Negotiate', 'Painting', 'Philosophy', 'Photography', 'Poetry', 'Production', 'Programming',
+      'React', 'Redux', 'River', 'Robotics', 'Rowling', 'Satire', 'Science Fiction', 'Shakespeare', 'Singh', 'Swimming',
+      'Tale', 'Thrun', 'Time', 'Tolstoy', 'Travel', 'Ultimate', 'Virtual Reality', 'Web Development', 'iOS'
+    ]
+  }
 
 
   render () {
-    const { books, updateQuery } = this.props
-    //const { query } = this.state.query
+    const { books, query, updateQuery } = this.props
 
     return (
       <div className="search-books">
         <div className="search-books-bar">
-          <Link className="close-search"
-            to='' // TODO
-            // onClick={this.props.onNavigate}
+
+          <Link
+            className="close-search"
+            to="/"
           >Close</Link>
+
           <SearchInput
             updateQuery={updateQuery}
           />
+          
         </div>
-
-
-        {books.length !== 0 && (
         <div className="search-books-results">
-          <ol className="books-grid">
-            {books.map((book) => (
-              <li key={book.id}>
-                <Book
-                  books={books}
-                  // onChangeCategory={this.props.onChangeCategory}
-                  book={book}
-                />
-                </li>
-              ))
-            }
-          </ol>
-        </div>)}
+          {books.length !== 0 && (
+            <ol className="books-grid">
+              {books.map((book) => (
+                <li key={book.id}>
+                  <Book
+                    books={books}
+                    // onChangeCategory={this.props.onChangeCategory}
+                    book={book}
+                  />
+                  </li>
+                ))
+              }
+            </ol>
+          )}
+          {(books.length === 0 && query === 'empty query') && (
+            <div className="no-results">
+              {`No results`}
+            </div>
+          )}
+          {query === '' && (
+            <div className="empty-query">
 
-        {(books.length === 0
-          // && query.length !== 0
-        ) && (
-          <div className="search-books-results">
-            {`No book found`}
-          </div>
-        )}
+              <p>PLEASE NOTE:
+                 The backend API uses a fixed set of cached search results and is limited to a particular set of search terms.
+                  That list of terms are the <em><u>only</u></em> terms that will work with the backend:
+              </p>
 
+              <ol className="searching-info">
+                {this.state.searchTerms.map( keyword => (
+                  <li key={keyword} className="keyword">{keyword}</li>
+                ))}
+              </ol>
 
-
+            </div>
+          )}
+        </div>
       </div>
     )
   }
 }
-
-// SearchInput.propTypes = {
-//   books: PropTypes.array.isRequired,
-//   updateQuery: PropTypes.func.isRequired
-// }
 
 export default SearchBook

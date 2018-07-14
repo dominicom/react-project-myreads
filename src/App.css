@@ -124,6 +124,37 @@ body, .app {
   padding: 80px 10px 20px;
 }
 
+.no-results,
+.empty-query {
+  font-size: 0.9em;
+  font-weight: 400;
+  color: #666;
+}
+.empty-query {
+  text-align: center;
+}
+.no-results,
+.searching-info {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.searching-info {
+  list-style-type: none;
+  padding: 1em;
+  margin: 0;
+}
+.keyword {
+  padding: 0.25em 0.5em;
+  margin: 0.25em;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  background-color: #fff;
+}
+
+.searching-info li {
+  text-align: left;
+}
 /* books grid */
 
 .books-grid {
@@ -132,7 +163,7 @@ body, .app {
   margin: 0;
 
   display: flex;
-  justify-content: center;
+  justify-content: left;
   flex-wrap: wrap;
 }
 .books-grid li {
@@ -153,6 +184,8 @@ body, .app {
 .book-authors {
   color: #999;
 }
+
+/* do usuniecia */
 .book-author-name::after {
   content: ", ";
 }

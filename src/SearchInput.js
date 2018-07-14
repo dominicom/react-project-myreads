@@ -11,10 +11,8 @@ class SearchInput extends Component {
   }
 
   updateQuery = (query) => {
-    //this.setState({ query: query.trim() })
     this.setState({ query: query });
     this.props.updateQuery(query)
-    //console.log(query)
   }
 
 
@@ -31,13 +29,12 @@ class SearchInput extends Component {
           However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
           you don't find a specific author or title. Every search is limited by search terms.
         */}
-        <form onSubmit={(event) => event.preventDefault()} >
+        <form onSubmit={(event) => event.preventDefault()}>
         <input
           type="text"
           placeholder="Search by title or author"
           onChange={(event) => this.updateQuery(event.target.value)}
           value={query}
-
         />
       </form>
       </div>
