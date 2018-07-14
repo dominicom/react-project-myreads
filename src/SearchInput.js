@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
+
+
 class SearchInput extends Component {
   static propTypes = {
     updateQuery: PropTypes.func.isRequired

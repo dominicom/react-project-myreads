@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-
-
 import { Link } from 'react-router-dom'
 import Book from './Book'
 import SearchInput from './SearchInput'
+
+
 
 class SearchBook extends Component {
   static propTypes = {
@@ -36,21 +36,18 @@ class SearchBook extends Component {
 
 
   render () {
-    const { books, query, updateQuery } = this.props
+    const { books, query, updateQuery, updateShelf } = this.props
 
     return (
       <div className="search-books">
         <div className="search-books-bar">
-
           <Link
             className="close-search"
             to="/"
           >Close</Link>
-
           <SearchInput
             updateQuery={updateQuery}
           />
-          
         </div>
         <div className="search-books-results">
           {books.length !== 0 && (
@@ -59,33 +56,34 @@ class SearchBook extends Component {
                 <li key={book.id}>
                   <Book
                     books={books}
-                    // onChangeCategory={this.props.onChangeCategory}
+                    updateShelf={updateShelf}
                     book={book}
+                    // defaultValue to selected option as first and disabled value in 'search' view
+                    defaultValue="move"
                   />
                   </li>
                 ))
               }
             </ol>
           )}
+          {/* query string is needed to check status of of error, inherit searchString state from parent <App> */}
           {(books.length === 0 && query === 'empty query') && (
             <div className="no-results">
-              {`No results`}
+              <p>No results</p>
             </div>
           )}
           {query === '' && (
+            // showing message about backend API information from (SEARCH_TERMS.MD)
             <div className="empty-query">
-
-              <p>PLEASE NOTE:
+              <p>NOTE:
                  The backend API uses a fixed set of cached search results and is limited to a particular set of search terms.
-                  That list of terms are the <em><u>only</u></em> terms that will work with the backend:
+                 That list of terms are the <em><u>only</u></em> terms that will work with the backend:
               </p>
-
               <ol className="searching-info">
                 {this.state.searchTerms.map( keyword => (
                   <li key={keyword} className="keyword">{keyword}</li>
                 ))}
               </ol>
-
             </div>
           )}
         </div>

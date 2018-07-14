@@ -3,7 +3,7 @@ import Book from './Book'
 
 class Shelf extends Component {
   render () {
-    const { name, books, shelf } = this.props
+    const { name, books, shelf, updateShelf } = this.props
     return (
       <div>
         <div className="bookshelf">
@@ -14,13 +14,27 @@ class Shelf extends Component {
                 <li key={book.id}>
                   <Book
                     books={books}
-                    onChangeCategory={this.props.onChangeCategory}
+                    updateShelf={updateShelf}
+                    // defaultValue to selected option as actual shelf value in 'main' view
+                    defaultValue={book.shelf}
                     book={book}
                   />
-                  </li>
+                </li>
                 ))
               }
+
+
             </ol>
+            {(books.length === 0) && (
+              <div className="shelf-status">
+                <p>{`Loading...`}</p>
+              </div>
+            )}
+            {(books.length !== 0) && (books.filter(book => book.shelf === shelf).length === 0) && (
+              <div className="shelf-status">
+                <p>{`No books selected`}</p>
+              </div>
+            )}
           </div>
         </div>
       </div>

@@ -6,28 +6,24 @@ import OpenSearch from './OpenSearch'
 import SearchBook from './SearchBook'
 import Library from './Library'
 
-
-
 import * as BooksAPI from './utils/BooksAPI'
 import './App.css'
 
+
+
 class App extends Component {
   state = {
-    /**
-     * TODO: Instead of using this state variable to keep track of which page
-     * we're on, use the URL in the browser's address bar. This will ensure that
-     * users can use the browser's back and forward buttons to navigate between
-     * pages, as well as provide a good URL they can bookmark and share.
-     */
-    screen: 'main', // main, search
     stack: [],
     searchQuery: [],
     searchString: ''
   }
-  componentDidMount() {
+
+  updateStack () {
     BooksAPI.getAll().then((books) => {
       this.setState({ stack: books })
+      console.log(this.state.stack)
     })
+
     // LISTA KSIĄŻEK
     //BooksAPI.getAll().then(books => console.log(books))
     //BooksAPI.update(book, shelf).then(() => {/* Update the book shelf and application state */})))
@@ -49,58 +45,46 @@ class App extends Component {
        this.setState({ searchQuery: [] })
        this.setState({ searchString: '' })
     }
-
-
-    BooksAPI.search(query).then(books => console.log(books))
+    //BooksAPI.search(query).then(books => console.log(books))
   }
 
 
 
-  // changeCategory = (book, shelf) => {
-  //     if (this.state.books) {
-  //         BooksAPI.update(book, shelf).then(() => {
-  //             book.shelf = shelf;
-  //             this.setState(state => ({
-  //                 books: state.books.filter(b => b.id !== book.id).concat([book])
-  //             }))
-  //         })
-  //     }
-  // }
+  updateShelf = (book, shelf) => {
+    BooksAPI.update(book, shelf).then(() => {
+      console.log(shelf)
+      this.updateStack()
+    })
+  }
 
-
+  componentDidMount() {
+    this.updateStack()
+  }
 
   render() {
     const { stack , searchQuery, searchString } = this.state
     return (
       <div className="app">
-
+        <Header />
         <Route exact path="/" render={() => (
           <div className="list-books">
 
-            <Header />
-
             <Library
               books={stack}
+              updateShelf={this.updateShelf}
             />
-
-            <OpenSearch
-              onNavigate={() => this.setState({ screen: 'search' })}
-            />
-
+            <OpenSearch />
           </div>
         )}/>
 
         <Route path='/search' render={() => (
-
           <SearchBook
             books={searchQuery}
             query={searchString}
             updateQuery={this.searchResult}
-            onNavigate={() => this.setState({ screen: 'main' })}
+            updateShelf={this.updateShelf}
           />
-          
         )}/>
-
       </div>
     )
   }
