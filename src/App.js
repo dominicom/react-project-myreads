@@ -66,7 +66,7 @@ class App extends Component {
     return (
       <div className="app">
         <Header />
-        <Route exact path="/" render={() => (
+        <Route path={process.env.PUBLIC_URL + "/"} exact render={() => (
           <div className="list-books">
 
             <Library
@@ -77,7 +77,7 @@ class App extends Component {
           </div>
         )}/>
 
-        <Route path='/search' render={() => (
+        <Route path={process.env.PUBLIC_URL + "/search"} render={() => (
           <SearchBook
             books={searchQuery}
             query={searchString}

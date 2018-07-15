@@ -7,7 +7,7 @@ import './index.css'
 
 
 ReactDOM.render(
-  <BrowserRouter><App /></BrowserRouter>,
+  <BrowserRouter basename={process.env.PUBLIC_URL}><App /></BrowserRouter>,
   document.getElementById('root')
 );
 registerServiceWorker();
