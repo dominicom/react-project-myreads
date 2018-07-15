@@ -19,10 +19,12 @@ class App extends Component {
   }
 
   updateStack () {
-    BooksAPI.getAll().then((books) => {
-      this.setState({ stack: books })
-      console.log(this.state.stack)
-    })
+    BooksAPI.getAll()
+      .then((books) => {
+        this.setState({ stack: books })
+        console.log(this.state.stack)
+      })
+      .catch(error => console.log(error));
 
     // LISTA KSIĄŻEK
     //BooksAPI.getAll().then(books => console.log(books))
