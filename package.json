@@ -1,5 +1,5 @@
 {
-  "homepage": "https://dominicom.github.io/reactnd-project-myreads",
+  "homepage": "https://dominicom.github.io/react-project-myreads",
   "dependencies": {
     "gh-pages": "^1.2.0",
     "prop-types": "^15.6.2",
