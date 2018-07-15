@@ -3,7 +3,7 @@ import Book from './Book'
 
 class Shelf extends Component {
   render () {
-    const { name, books, shelf, updateShelf } = this.props
+    const { name, books, shelf, updateShelf, showDetails } = this.props
     return (
       <div>
         <div className="bookshelf">
@@ -18,6 +18,7 @@ class Shelf extends Component {
                     // defaultValue to selected option as actual shelf value in 'main' view
                     defaultValue={book.shelf}
                     book={book}
+                    showDetails={showDetails}
                   />
                 </li>
                 ))

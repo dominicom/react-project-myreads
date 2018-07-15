@@ -1,33 +1,34 @@
 import React, { Component } from 'react'
-
+import PlaceHolder from './icons/book-placeholder.svg'
 
 
 class Book extends Component {
-
   updateShelf = (book, shelf) => {
     this.props.update(book, shelf)
   }
-
+  showDetails = (book) => {
+    this.props.showDetails(book)
+    console.log(`clicked ${book.title}`)
+  }
 
   render () {
-    const placeHolder =  './icons/book-placeholder.svg'  // 'http://via.placeholder.com/350x150'
-    const { book, updateShelf } = this.props
+
+    const { book, updateShelf, showDetails } = this.props
+    //const { showDetails } = this.setState
+
     return (
       <div className="book">
         <div className="book-top">
           <div className="book-cover"
               style={{
-                /* Condition due to prevent error because some books has no cover image
-                /* Replace to placeholder icon */
-                backgroundImage: `url(${book.imageLinks ? book.imageLinks.thumbnail : placeHolder})`
+                backgroundImage: `url(${book.imageLinks ? book.imageLinks.thumbnail : PlaceHolder})`
               }}>
           </div>
-
-
         </div>
         <div className="book-bottom">
-          {/* <div> */}
+
             <div className="book-title">{book.title}</div>
+
             <div className="book-shelf-changer">
               <select
                 onChange={(event) => updateShelf(book, event.target.value)}
@@ -41,20 +42,17 @@ class Book extends Component {
                 <option value="none">None</option>
               </select>
             </div>
-          {/* </div> */}
-
           </div>
 
           <div className="book-authors">
             {/* Condition due to prevent error and separate authors with comma and space  */}
             {book.authors ? book.authors.join(', ') : ''}
-
-            {/* {book.authors.map( (author) => (
-              <span className="book-author-name" key={author}>{author}</span>
-            ))} */}
-
           </div>
-
+          <button
+            onClick={ (event) => showDetails(book)}
+            className="button show-details"
+          >Details...
+          </button>
 
       </div>
     )

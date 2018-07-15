@@ -36,7 +36,7 @@ class SearchBook extends Component {
 
 
   render () {
-    const { books, query, updateQuery, updateShelf } = this.props
+    const { books, query, updateQuery, updateShelf, showDetails } = this.props
 
     return (
       <div className="search-books">
@@ -58,6 +58,7 @@ class SearchBook extends Component {
                     books={books}
                     updateShelf={updateShelf}
                     book={book}
+                    showDetails={showDetails}
                     // defaultValue to selected option as first and disabled value in 'search' view
                     defaultValue="move"
                   />

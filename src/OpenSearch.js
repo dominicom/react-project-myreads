@@ -6,8 +6,7 @@ class OpenSearch extends Component {
     return (
       <div className="open-search">
         <Link
-          to="/search"
-          // onClick={this.props.onNavigate}
+          to={process.env.PUBLIC_URL + "/search"}
         >Add a book</Link>
       </div>
     )

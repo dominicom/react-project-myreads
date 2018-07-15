@@ -7,13 +7,14 @@ import Shelf from './Shelf'
 class Library extends Component {
 
   render () {
-    const { books, updateShelf } = this.props
+    const { books, updateShelf, showDetails } = this.props
     return (
-      <main className="book-shelf-container">
+      <div className="book-shelf-container">
         <Shelf
           name="Currently Reading"
           books={books}
           updateShelf={updateShelf}
+          showDetails={showDetails}
           shelf="currentlyReading"
         />
         <Shelf
@@ -21,14 +22,16 @@ class Library extends Component {
           books={books}
           updateShelf={updateShelf}
           shelf="wantToRead"
+          showDetails={showDetails}
         />
         <Shelf
           name="Read"
           books={books}
           updateShelf={updateShelf}
           shelf="read"
+          showDetails={showDetails}
         />
-      </main>
+      </div>
     )
   }
 }

@@ -11,10 +11,6 @@ body {
 body, .app {
   background: #dedede;
 }
-
-
-
-/* main page */
 header {
   position: fixed;
   top: 0;
@@ -22,19 +18,61 @@ header {
   height: 4.5em;
   z-index: 4;
 }
+button {
+  border: none;
+}
+footer {
+  display: table;
+  text-align: center;
+  margin: 2em auto;
+}
+.button {
+  background: #0cd;
+  color: #fff;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  padding: 0.5rem;
+  border: 1px solid #0cd;
+  border-radius: 0.25em;
+  cursor: pointer;
+}
+a.button {
+  text-decoration: none;
+}
+.button:hover {
+  background: #fff;
+  color: #0cd;
+}
+.close {
+  font-size: 0;
+  cursor: pointer;
+}
 
+
+/* main page */
 
 .list-books-title {
   padding: 10px 0;
   background: #0cd;
-  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 0 6px rgba(0,0,0,0.23);
 }
+.logo {
+  width: 50px;
+  height: 50px;
+  background-image: url('./icons/logo.svg');
+}
 .list-books-title h1 {
-  font-weight: 400;
-  margin: 0;
+  font-weight: 300;
+  margin: 0 20px 0;
   color: white;
 }
+
+
+
 .book-shelf-container {
   padding: 80px 0 0;
 }
@@ -95,6 +133,18 @@ header {
   font-size: 0;
   cursor: pointer;
 }
+.book-details-screen {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 4.5em;
+  left: 0;
+  z-index: 10;
+  background-color: rgba(0,0,0,0.5);
+}
+
+
+
 
 /* search page */
 
@@ -134,11 +184,9 @@ header {
   cursor: pointer;
 }
 
-/*                */
-/*                */
-/* SEARCH RESULTS */
-/*                */
-/*                */
+/*                                */
+/* -----  BOOK SEARCH PAGE  ----- */
+/*                                */
 
 .search-books-results {
   padding: 9em 0.8em 2em;
@@ -185,7 +233,6 @@ header {
   list-style-type: none;
   padding: 0;
   margin: 0;
-
   display: flex;
   justify-content: left;
   flex-wrap: wrap;
@@ -197,11 +244,9 @@ header {
 
 
 
-/*                */
-/*                */
-/* BOOK COMPONENT */
-/*                */
-/*                */
+/*                              */
+/* -----  BOOK COMPONENT  ----- */
+/*                              */
 
 .book {
   width: 10em;
@@ -242,18 +287,27 @@ header {
   justify-content: space-between;
   border-top: 1px solid #dedede;
 }
+
 .book-title,
-.book-authors {
+.book-authors,
+.show-details {
   font-size: 0.9em;
-  margin: 0.5em;
 }
 .book-title {
   width: 8.5em;
   font-weight: 500;
+  margin: 0.75em;
 }
+
+.book-authors,
+.show-details {
+  margin: 0 0.75em 0.75em;
+}
+
 .book-authors {
   color: #999;
 }
+
 
 /* book changer */
 
@@ -272,4 +326,92 @@ header {
   height: 100%;
   opacity: 0;
   cursor: pointer;
+}
+
+
+
+/*                                  */
+/* -----  BOOK DETAILS POPUP  ----- */
+/*                                  */
+
+
+
+.book-details-container {
+  background-color: #fff;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 0 6px rgba(0,0,0,0.23);
+  padding: 2.5em;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+}
+.book-details-container h2 {
+  margin-top: 0;
+}
+.book-details-container h4 {
+  color: #666;
+  font-weight: 400;
+  margin-top: 0;
+}
+.category-tags {
+  list-style: none;
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+.category-tags li {
+  padding: 0.5em;
+  background-color: #dedede;
+  color: #666;
+  font-size: 0.8em;
+  text-transform: uppercase;
+  border-radius: 0.25em;
+}
+.rating {
+  display: inline-flex;
+  padding: 0.5em;
+  background-color: #0cd;
+  color: #fff;
+  font-size: 0.8em;
+  font-weight: 500;
+  text-transform: uppercase;
+  border-radius: 0.25em;
+}
+.authors {
+  margin: 1em 0;
+}
+.book-details-container .book-cover {
+  width: 200px;
+  border: 1px solid #dedede;
+}
+.book-details-container .book-details {
+  flex: 1;
+  max-width: 600px;
+  margin: 0 0 0 2em;
+  color: #666;
+  font-size: 0.9em;
+  font-weight: 300;
+  text-align: left;
+}
+.book-details-screen .close {
+  position: absolute;
+  right: 0;
+  margin: 0.5rem;
+  background-color: #fff;
+}
+.book-details-screen .label {
+  font-size: 0.8em;
+  font-weight: 500;
+  margin: 0 1em 0 0;
+  text-transform: uppercase;
+}
+
+.book-details-buttons {
+  font-size: 0.8em;
+  margin: 2em 0
+}
+.book-details-buttons a {
+  margin: 0 1em 0 0;
 }

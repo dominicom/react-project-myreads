@@ -2,9 +2,13 @@ import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
 
 import Header from './Header'
+
+import BookDetails from './BookDetails'
+import Library from './Library'
 import OpenSearch from './OpenSearch'
 import SearchBook from './SearchBook'
-import Library from './Library'
+
+import Footer from './Footer'
 
 import * as BooksAPI from './utils/BooksAPI'
 import './App.css'
@@ -15,7 +19,8 @@ class App extends Component {
   state = {
     stack: [],
     searchQuery: [],
-    searchString: ''
+    searchString: '',
+    bookDetails: []
   }
 
   updateStack () {
@@ -26,9 +31,7 @@ class App extends Component {
       })
       .catch(error => console.log(error));
 
-    // LISTA KSIĄŻEK
     //BooksAPI.getAll().then(books => console.log(books))
-    //BooksAPI.update(book, shelf).then(() => {/* Update the book shelf and application state */})))
   }
 
   searchResult = (query) => {
@@ -54,7 +57,7 @@ class App extends Component {
 
   updateShelf = (book, shelf) => {
     BooksAPI.update(book, shelf).then(() => {
-      console.log(shelf)
+      console.log(`Moved "${book.title}" to "${shelf}" ID shelf`)
       this.updateStack()
     })
   }
@@ -63,30 +66,54 @@ class App extends Component {
     this.updateStack()
   }
 
+  showDetails = (book) => {
+    this.setState({ bookDetails: book })
+    this.setState({ showingPopup: true })
+    console.log(`showing details of ${book.title}`)
+  }
+  closeDetails = () => {
+    this.setState({ bookDetails: [] })
+    console.log(`closing details`)
+  }
+
   render() {
-    const { stack , searchQuery, searchString } = this.state
+    const { stack , searchQuery, searchString, bookDetails } = this.state
     return (
       <div className="app">
         <Header />
-        <Route path={process.env.PUBLIC_URL + "/"} exact render={() => (
-          <div className="list-books">
+        {console.log(process.env.PUBLIC_URL)}
 
+        {bookDetails.length !== 0 && (
+          <BookDetails
+            book={bookDetails}
+            closeDetails={this.closeDetails}
+          />
+        )}
+
+        <Route path={process.env.PUBLIC_URL + "/"} exact render={() => (
+          <main className="list-books">
             <Library
               books={stack}
               updateShelf={this.updateShelf}
+              showDetails={this.showDetails}
             />
             <OpenSearch />
-          </div>
+          </main>
+
         )}/>
 
         <Route path={process.env.PUBLIC_URL + "/search"} render={() => (
+          <main>
           <SearchBook
             books={searchQuery}
             query={searchString}
             updateQuery={this.searchResult}
             updateShelf={this.updateShelf}
+            showDetails={this.showDetails}
           />
+        </main>
         )}/>
+        <Footer />
       </div>
     )
   }
