@@ -14,9 +14,7 @@ class Footer extends Component {
               backgroundImage: `url(${Copyright})`,
               backgroundPosition: "top center",
               backgroundRepeat: "no-repeat",
-              textAlign: "center",
-              width: 375,
-              height: 27
+              textAlign: "center"
             }}>
           </div>
 

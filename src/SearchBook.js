@@ -43,14 +43,17 @@ class SearchBook extends Component {
         <div className="search-books-bar">
           <Link
             className="close-search"
-            to="/"
+            to={process.env.PUBLIC_URL + "/"}
           >Close</Link>
           <SearchInput
             updateQuery={updateQuery}
           />
         </div>
         <div className="search-books-results">
-          {books.length !== 0 && (
+
+          {books.length !== 0 && query.lentgh !== 0 && (
+            <div className="results">
+            <p><mark>RESULTS:</mark>{books.length} book(s) found</p>
             <ol className="books-grid">
               {books.map((book) => (
                 <li key={book.id}>
@@ -66,17 +69,21 @@ class SearchBook extends Component {
                 ))
               }
             </ol>
+          </div>
           )}
+          
           {/* query string is needed to check status of of error, inherit searchString state from parent <App> */}
           {(books.length === 0 && query === 'empty query') && (
             <div className="no-results">
-              <p>No results</p>
+              <p className="message"><mark>no results</mark></p>
             </div>
           )}
-          {query === '' && (
+
+
+          {!query && (
             // showing message about backend API information from (SEARCH_TERMS.MD)
             <div className="empty-query">
-              <p>NOTE:
+              <p className="message"><mark>NOTE:</mark>
                  The backend API uses a fixed set of cached search results and is limited to a particular set of search terms.
                  That list of terms are the <em><u>only</u></em> terms that will work with the backend:
               </p>
@@ -87,6 +94,14 @@ class SearchBook extends Component {
               </ol>
             </div>
           )}
+
+          {query ? books.length === 0 && query !== 'empty query' && (
+            <div className="results">
+            <p className="message animation"><mark className="loading">searching</mark></p>
+            </div>
+          ) : undefined}
+
+
         </div>
       </div>
     )

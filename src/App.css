@@ -26,6 +26,15 @@ footer {
   text-align: center;
   margin: 2em auto;
 }
+mark {
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  background: none;
+  color: inherit;
+  padding: 0.5em;
+  text-transform: uppercase;
+}
 .button {
   background: #0cd;
   color: #fff;
@@ -35,10 +44,8 @@ footer {
   padding: 0.5rem;
   border: 1px solid #0cd;
   border-radius: 0.25em;
-  cursor: pointer;
-}
-a.button {
   text-decoration: none;
+  cursor: pointer;
 }
 .button:hover {
   background: #fff;
@@ -50,7 +57,13 @@ a.button {
 }
 
 
-/* main page */
+
+
+/*                         */
+/* -----  MAIN PAGE  ----- */
+/*                         */
+
+
 
 .list-books-title {
   padding: 10px 0;
@@ -71,39 +84,7 @@ a.button {
   color: white;
 }
 
-
-
-.book-shelf-container {
-  padding: 80px 0 0;
-}
-.list-books-content {
-  padding: 0 0 80px;
-  flex: 1;
-}
-
-.bookshelf {
-  background: #fff;
-  padding: 0 10px 20px;
-  margin: 1em;
-  border: 1px solid #ccc;
-}
-
-@media (min-width: 600px) {
-  .bookshelf {
-    padding: 0 20px 40px;
-  }
-}
-
-.bookshelf-title {
-  border-bottom: 1px solid #dedede;
-  font-weight: 300;
-  color: #666;
-  padding: 0 0 0.5em;
-  text-align: center;
-}
-.bookshelf-books {
-  text-align: center;
-}
+/* -----  OPEN SEARCH / ADD BOOK BUTTON  ----- */
 
 .open-search {
   position: fixed;
@@ -111,7 +92,6 @@ a.button {
   bottom: 2rem;
   width: 3rem;
   height: 3rem;
-  transition: 0.3s;  /* do susuniecia ew */
 }
 .open-search:hover {
   right: 1.5rem;
@@ -133,20 +113,53 @@ a.button {
   font-size: 0;
   cursor: pointer;
 }
-.book-details-screen {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  top: 4.5em;
-  left: 0;
-  z-index: 10;
-  background-color: rgba(0,0,0,0.5);
+
+
+
+
+/*                                    */
+/* -----  BOOK SHELF COMPONENT  ----- */
+/*                                    */
+
+
+
+.book-shelf-container {
+  padding: 80px 0 0;
+}
+.list-books-content {
+  padding: 0 0 80px;
+  flex: 1;
+}
+
+.bookshelf {
+  background: #fff;
+  padding: 0 20px 40px;
+  margin: 1em;
+  border: 1px solid #ccc;
+}
+
+.bookshelf-title {
+  border-bottom: 1px solid #dedede;
+  font-weight: 300;
+  color: #666;
+  padding: 0 0 0.5em;
+  text-align: center;
+}
+.bookshelf-books {
+  text-align: center;
+}
+.bookshelf .message {
+  color: #ccc;
 }
 
 
 
 
-/* search page */
+
+/*                                */
+/* -----  BOOK SEARCH PAGE  ----- */
+/*                                */
+
 
 .search-books-bar {
   position: fixed;
@@ -183,15 +196,7 @@ a.button {
   font-size: 0;
   cursor: pointer;
 }
-
-/*                                */
-/* -----  BOOK SEARCH PAGE  ----- */
-/*                                */
-
-.search-books-results {
-  padding: 9em 0.8em 2em;
-}
-
+.results,
 .no-results,
 .empty-query,
 .shelf-status {
@@ -199,9 +204,7 @@ a.button {
   font-weight: 400;
   color: #666;
 }
-.empty-query {
-  text-align: center;
-}
+.results,
 .no-results,
 .searching-info,
 .shelf-status {
@@ -209,6 +212,20 @@ a.button {
   justify-content: center;
   flex-wrap: wrap;
 }
+
+
+
+/* search page blank (no query) */
+
+.search-books-results {
+  padding: 9em 0.8em 2em;
+}
+
+
+.empty-query {
+  text-align: center;
+}
+
 .searching-info {
   list-style-type: none;
   padding: 1em;
@@ -309,7 +326,7 @@ a.button {
 }
 
 
-/* book changer */
+/* BOOK CHANGER */
 
 .book-shelf-changer {
   float: right;
@@ -335,6 +352,15 @@ a.button {
 /*                                  */
 
 
+.book-details-screen {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 4.5em;
+  left: 0;
+  z-index: 10;
+  background-color: rgba(0,0,0,0.5);
+}
 
 .book-details-container {
   background-color: #fff;
@@ -378,12 +404,14 @@ a.button {
   font-weight: 500;
   text-transform: uppercase;
   border-radius: 0.25em;
+  letter-spacing: 0.25em;
 }
-.authors {
-  margin: 1em 0;
+.detailed-info {
+  margin: 0.5em 0;
 }
 .book-details-container .book-cover {
   width: 200px;
+  height: 300px;
   border: 1px solid #dedede;
 }
 .book-details-container .book-details {
@@ -414,4 +442,16 @@ a.button {
 }
 .book-details-buttons a {
   margin: 0 1em 0 0;
+}
+
+
+
+/*                      */
+/* -----  FOOTER  ----- */
+/*                      */
+
+
+.app-copyright div {
+  width: 375px;
+  height: 27px;
 }

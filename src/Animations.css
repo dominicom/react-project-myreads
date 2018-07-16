@@ -1,0 +1,22 @@
+.loading::after {
+  animation: loading 1s infinite;
+  content: "";
+}
+@keyframes loading {
+  25% {
+    content: ".";
+  }
+  50% {
+    content: "..";
+  }
+  75% {
+    content: "...";
+  }
+  100%  {
+    content: "";
+  }
+}
+.message.animation {
+  width: 140px;
+  text-align: left;
+}

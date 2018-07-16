@@ -28,12 +28,12 @@ class Shelf extends Component {
             </ol>
             {(books.length === 0) && (
               <div className="shelf-status">
-                <p>{`Loading...`}</p>
+                <p className="message animation"><mark className="loading">loading</mark></p>
               </div>
             )}
             {(books.length !== 0) && (books.filter(book => book.shelf === shelf).length === 0) && (
               <div className="shelf-status">
-                <p>{`No books selected`}</p>
+                <p className="message"><mark>no books selected</mark></p>
               </div>
             )}
           </div>

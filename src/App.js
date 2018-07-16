@@ -12,6 +12,8 @@ import Footer from './Footer'
 
 import * as BooksAPI from './utils/BooksAPI'
 import './App.css'
+import './Responsive.css'
+import './Animations.css'
 
 
 
@@ -23,15 +25,13 @@ class App extends Component {
     bookDetails: []
   }
 
-  updateStack () {
+  updateStack = () => {
     BooksAPI.getAll()
       .then((books) => {
         this.setState({ stack: books })
-        console.log(this.state.stack)
+        //console.log(this.state.stack)
       })
       .catch(error => console.log(error));
-
-    //BooksAPI.getAll().then(books => console.log(books))
   }
 
   searchResult = (query) => {
@@ -68,12 +68,10 @@ class App extends Component {
 
   showDetails = (book) => {
     this.setState({ bookDetails: book })
-    this.setState({ showingPopup: true })
-    console.log(`showing details of ${book.title}`)
   }
+
   closeDetails = () => {
     this.setState({ bookDetails: [] })
-    console.log(`closing details`)
   }
 
   render() {
@@ -81,7 +79,8 @@ class App extends Component {
     return (
       <div className="app">
         <Header />
-        {console.log(process.env.PUBLIC_URL)}
+
+        {/* {console.log(process.env.PUBLIC_URL)} */}
 
         {bookDetails.length !== 0 && (
           <BookDetails
