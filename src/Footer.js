@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import Copyright from './icons/copyright.svg'
+import React, { Component } from 'react';
+import Copyright from './icons/copyright.svg';
 
 
 

@@ -1,13 +1,13 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
-import Shelf from './Shelf'
+import Shelf from './Shelf';
 
 
 
 class Library extends Component {
 
   render () {
-    const { books, updateShelf, showDetails } = this.props
+    const { books, updateShelf, showDetails } = this.props;
     return (
       <div className="book-shelf-container">
         <Shelf

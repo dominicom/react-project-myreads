@@ -1,89 +1,111 @@
 # MyReads Project
 
-This is the starter template for the final assessment project for Udacity's React Fundamentals course. The goal of this template is to save you time by providing a static example of the CSS and HTML markup that may be used, but without any of the React code that is needed to complete the project. If you choose to start with this template, your job will be to add interactivity to the app by refactoring the static code in this template.
+**My Reads** — tracking book app
 
-Of course, you are free to start this project from scratch if you wish! Just be sure to use [Create React App](https://github.com/facebookincubator/create-react-app) to bootstrap the project.
+Student Project #7 during Google Front-End Development Nanodegree Program at Udacity made with React.
 
-## TL;DR
+**[See live project](https://dominicom.github.io/react-project-myreads/)**
 
-To get started developing right away:
 
-* install all project dependencies with `npm install`
-* start the development server with `npm start`
+## Table of Contents
 
-## What You're Getting
-```bash
-├── CONTRIBUTING.md
-├── README.md - This file.
-├── SEARCH_TERMS.md # The whitelisted short collection of available search terms for you to use with your app.
-├── package.json # npm package manager file. It's unlikely that you'll need to modify this.
-├── public
-│   ├── favicon.ico # React Icon, You may change if you wish.
-│   └── index.html # DO NOT MODIFY
-└── src
-    ├── App.css # Styles for your app. Feel free to customize this as you desire.
-    ├── App.js # This is the root of your app. Contains static HTML right now.
-    ├── App.test.js # Used for testing. Provided with Create React App. Testing is encouraged, but not required.
-    ├── BooksAPI.js # A JavaScript API for the provided Udacity backend. Instructions for the methods are below.
-    ├── icons # Helpful images for your app. Use at your discretion.
-    │   ├── add.svg
-    │   ├── arrow-back.svg
-    │   └── arrow-drop-down.svg
-    ├── index.css # Global styles. You probably won't need to change anything here.
-    └── index.js # You should not need to modify this file. It is used for DOM rendering only.
-```
+* [Project Overview](#project-overview)
+* [How to Run Application](#how-to-run-application)
+* [About the project](#about-the-project)
+* [Contributing](#contributing)
 
-Remember that good React design practice is to create new JS files for each component and use import/require statements to include them where they are needed.
+## Project Overview
 
-## Backend Server
+This is #7 student project made for Udacity classroom on Front-End Web Developer track.
 
-To simplify your development process, we've provided a backend server for you to develop against. The provided file [`BooksAPI.js`](src/BooksAPI.js) contains the methods you will need to perform necessary operations on the backend:
+#### Starter Project
+> link https://github.com/udacity/reactnd-project-myreads-starter
 
+#### Specification
+
+This is the starter template for the final assessment project for Udacity's React Fundamentals course. The goal of this template is to save time by providing a static example of the CSS and HTML markup that may be used, but without any of the React code that is needed to complete the project. Student can choose to start with this template, His job is to add interactivity to the app by refactoring the static code in this template.
+
+#### Backend Server
+
+To simplify development process, there is provided a backend server for students to develop against. The provided file [`BooksAPI.js`](src/utils/BooksAPI.js) contains the methods that will be needed to perform necessary operations on the backend like:
 * [`getAll`](#getall)
 * [`update`](#update)
 * [`search`](#search)
 
-### `getAll`
+#### Important
+The **backend API** uses a fixed set of cached search results and is limited to a particular set of search terms, which can be found in [SEARCH_TERMS.md](SEARCH_TERMS.md). That list of terms are the _only_ terms that will work with the backend, so don't be surprised if your searches for Basket Weaving or Bubble Wrap don't come back with any results.
 
-Method Signature:
+#### Main React Components Structure
+```
+<App />
+  <Header />
+  <BookDetails />
 
-```js
-getAll()
+  <!-- Main page with <Route /> path='/' -->
+  
+    <Library />
+      <Shelf />
+        <Book />
+    <OpenSearch />
+
+  <!-- Search page <Route /> path='/search' -->
+
+    <SearchBook />
+      <Book />
+  <Footer />
 ```
 
-* Returns a Promise which resolves to a JSON object containing a collection of book objects.
-* This collection represents the books currently in the bookshelves in your app.
+## How to Run Application
 
-### `update`
+#### Possible choices:
 
-Method Signature:
+**1**. You can run a **[live demo](https://dominicom.github.io/react-project-myreads/)** deployed with `gh-pages`
 
-```js
-update(book, shelf)
-```
+**2**. Or run it on your local machine:
+* download or clone the repository
+* next follow these [instructions](#instructions)
 
-* book: `<Object>` containing at minimum an `id` attribute
-* shelf: `<String>` contains one of ["wantToRead", "currentlyReading", "read"]  
-* Returns a Promise which resolves to a JSON object containing the response data of the POST request
 
-### `search`
 
-Method Signature:
+### Instructions
+**Running application on local machine**
 
-```js
-search(query)
-```
+To get started:
 
-* query: `<String>`
-* Returns a Promise which resolves to a JSON object containing a collection of a maximum of 20 book objects.
-* These books do not know which shelf they are on. They are raw results only. You'll need to make sure that books have the correct state while on the search page.
+* `cd` _react-project-myreads_ folder
+* install all project dependencies with `npm install`
+* start the development server with `npm start`
+* with your server running, visit the site: `http://localhost:3000` if not open automatically
 
-## Important
-The backend API uses a fixed set of cached search results and is limited to a particular set of search terms, which can be found in [SEARCH_TERMS.md](SEARCH_TERMS.md). That list of terms are the _only_ terms that will work with the backend, so don't be surprised if your searches for Basket Weaving or Bubble Wrap don't come back with any results.
 
-## Create React App
+## About the project
 
-This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app). You can find more information on how to perform common tasks [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
+In this application, the main page displays a list of "shelves" (i.e. categories), each of which contains a number of books. The three shelves are:
+
+* Currently Reading
+* Want to Read
+* Read
+
+Application is created to help you to managing your personal library and stack of books. There is 7 books as default but:
+
+- You can search for new books in the `/search` page or click **+** button on the right bottom corner.
+
+- Use menu below book cover to select shelf **Reading**, **Want to**, **Read** to put the book on right one
+
+- **None** removes the book from each shelf in main page
+
+
+#### Graphics and design resources
+
+Most elements delivered with [starter project](https://github.com/udacity/reactnd-project-myreads-starter).
+Application redesigned by the **Author**, changed UI/UX of original design, inspired by [Material](https://material.io/).
+
+#### Dependencies & External Libraries Used
+
+* React Router - [`react-router-dom`](https://www.npmjs.com/package/react-router-dom)
+* Prop-Types [`prop-types`](https://www.npmjs.com/package/prop-types)
+
+
 
 ## Contributing
 

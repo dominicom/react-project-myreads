@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
-import Image from './icons/close.svg'
+import React, { Component } from 'react';
+import Image from './icons/close.svg';
 
 class Close extends Component {
   render () {
-    const { onClick } = this.props
+    const { onClick } = this.props;
     return (
       <button
         className="close"

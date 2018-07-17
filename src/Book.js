@@ -1,20 +1,19 @@
-import React, { Component } from 'react'
-import PlaceHolder from './icons/book-placeholder.svg'
+import React, { Component } from 'react';
+import PlaceHolder from './icons/book-placeholder.svg';
 
 
 class Book extends Component {
   updateShelf = (book, shelf) => {
-    this.props.update(book, shelf)
-  }
+    this.props.update(book, shelf);
+  };
   showDetails = (book) => {
-    this.props.showDetails(book)
-    console.log(`clicked ${book.title}`)
-  }
+    this.props.showDetails(book);
+    console.log(`clicked ${book.title}`);
+  };
 
   render () {
 
-    const { book, updateShelf, showDetails } = this.props
-    //const { showDetails } = this.setState
+    const { book, updateShelf, showDetails } = this.props;
 
     return (
       <div className="book">

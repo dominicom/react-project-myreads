@@ -1,14 +1,14 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
-import Close from './Close'
-import PlaceHolder from './icons/book-placeholder.svg'
+import Close from './Close';
+import PlaceHolder from './icons/book-placeholder.svg';
 
 
 
 
 class BookDetails extends Component {
   render () {
-    const { book, closeDetails } = this.props
+    const { book, closeDetails } = this.props;
     return (
       <div className="book-details-screen">
         <Close

@@ -2,3 +2,5 @@ node_modules
 yarn.lock
 .DS_Store
 src/originalApp.js
+run.bat
+deploy.bat

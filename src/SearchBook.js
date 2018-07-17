@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
-import { Link } from 'react-router-dom'
-import Book from './Book'
-import SearchInput from './SearchInput'
+import { Link } from 'react-router-dom';
+import Book from './Book';
+import SearchInput from './SearchInput';
 
 
 
@@ -71,7 +71,7 @@ class SearchBook extends Component {
             </ol>
           </div>
           )}
-          
+
           {/* query string is needed to check status of of error, inherit searchString state from parent <App> */}
           {(books.length === 0 && query === 'empty query') && (
             <div className="no-results">

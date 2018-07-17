@@ -36,7 +36,7 @@ mark {
   text-transform: uppercase;
 }
 .button {
-  background: #0cd;
+  background-color: #0cd;
   color: #fff;
   font-family: 'Roboto', sans-serif;
   font-size: 1rem;
@@ -81,7 +81,7 @@ mark {
 .list-books-title h1 {
   font-weight: 300;
   margin: 0 20px 0;
-  color: white;
+  color: #fff;
 }
 
 /* -----  OPEN SEARCH / ADD BOOK BUTTON  ----- */
@@ -188,7 +188,7 @@ mark {
   top: 20px;
   left: 15px;
   width: 50px;
-  background: white;
+  background: #fff;
   background-image: url('./icons/arrow-back.svg');
   background-position: center;
   background-repeat: no-repeat;
@@ -251,7 +251,7 @@ mark {
   padding: 0;
   margin: 0;
   display: flex;
-  justify-content: left;
+  justify-content: flex-start;
   flex-wrap: wrap;
 }
 .books-grid li {

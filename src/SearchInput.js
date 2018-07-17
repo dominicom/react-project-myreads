@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 
 
@@ -14,13 +14,12 @@ class SearchInput extends Component {
 
   updateQuery = (query) => {
     this.setState({ query: query });
-    this.props.updateQuery(query)
+    this.props.updateQuery(query);
   }
 
 
   render () {
-    //const { books } = this.props
-    const { query } = this.state.query
+    const { query } = this.state.query;
     return (
       <div className="search-books-input-wrapper">
         {/*
@@ -32,13 +31,13 @@ class SearchInput extends Component {
           you don't find a specific author or title. Every search is limited by search terms.
         */}
         <form onSubmit={(event) => event.preventDefault()}>
-        <input
-          type="text"
-          placeholder="Search by title or author"
-          onChange={(event) => this.updateQuery(event.target.value)}
-          value={query}
-        />
-      </form>
+          <input
+            type="text"
+            placeholder="Search by title or author"
+            onChange={(event) => this.updateQuery(event.target.value)}
+            value={query}
+          />
+        </form>
       </div>
     )
   }

@@ -1,19 +1,19 @@
-import React, { Component } from 'react'
-import { Route } from 'react-router-dom'
+import React, { Component } from 'react';
+import { Route } from 'react-router-dom';
 
-import Header from './Header'
+import Header from './Header';
 
-import BookDetails from './BookDetails'
-import Library from './Library'
-import OpenSearch from './OpenSearch'
-import SearchBook from './SearchBook'
+import BookDetails from './BookDetails';
+import Library from './Library';
+import OpenSearch from './OpenSearch';
+import SearchBook from './SearchBook';
 
-import Footer from './Footer'
+import Footer from './Footer';
 
-import * as BooksAPI from './utils/BooksAPI'
-import './App.css'
-import './Responsive.css'
-import './Animations.css'
+import * as BooksAPI from './utils/BooksAPI';
+import './App.css';
+import './Responsive.css';
+import './Animations.css';
 
 
 
@@ -23,56 +23,55 @@ class App extends Component {
     searchQuery: [],
     searchString: '',
     bookDetails: []
-  }
+  };
 
   updateStack = () => {
     BooksAPI.getAll()
       .then((books) => {
-        this.setState({ stack: books })
-        //console.log(this.state.stack)
+        this.setState({ stack: books });
       })
       .catch(error => console.log(error));
-  }
+  };
 
   searchResult = (query) => {
     if (query) {
       BooksAPI.search(query).then(books => {
         if (books.error) {
-          this.setState({ searchQuery: [] })
-          this.setState({ searchString: books.error })
+          this.setState({ searchQuery: [] });
+          this.setState({ searchString: books.error });
         } else {
           this.setState({ searchQuery: books })
         }
-      })
-      this.setState({ searchString: query })
+      });
+      this.setState({ searchString: query });
 
     } else {
-       this.setState({ searchQuery: [] })
-       this.setState({ searchString: '' })
+       this.setState({ searchQuery: [] });
+       this.setState({ searchString: '' });
     }
-    //BooksAPI.search(query).then(books => console.log(books))
-  }
+    //BooksAPI.search(query).then(books => console.log(books));
+  };
 
 
 
   updateShelf = (book, shelf) => {
     BooksAPI.update(book, shelf).then(() => {
-      console.log(`Moved "${book.title}" to "${shelf}" ID shelf`)
-      this.updateStack()
+      console.log(`Moved "${book.title}" to "${shelf}" ID shelf`);
+      this.updateStack();
     })
-  }
+  };
 
   componentDidMount() {
-    this.updateStack()
-  }
+    this.updateStack();
+  };
 
   showDetails = (book) => {
-    this.setState({ bookDetails: book })
-  }
+    this.setState({ bookDetails: book });
+  };
 
   closeDetails = () => {
-    this.setState({ bookDetails: [] })
-  }
+    this.setState({ bookDetails: [] });
+  };
 
   render() {
     const { stack , searchQuery, searchString, bookDetails } = this.state
@@ -112,6 +111,7 @@ class App extends Component {
           />
         </main>
         )}/>
+
         <Footer />
       </div>
     )
