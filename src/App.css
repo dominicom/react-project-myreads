@@ -266,18 +266,86 @@ mark {
 /*                              */
 
 .book {
+  position: relative;
   width: 10em;
   background-color: #fff;
   box-shadow: 0 2px 3px rgba(0,0,0,0.2), 0 2px 2px rgba(0,0,0,0.2);
   border-radius: 0.2em;
 }
+.book-update {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+.book-update .message {
+  margin: 100px 0 0;
+  color: #fff;
+}
 
 /* TOP */
 
 .book-top {
+  position: relative;
   display: flex;
   align-items: flex-end;
+  overflow: hidden;
 }
+
+/* .book-selected-none {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 150px;
+  background: none;
+}
+
+.book-selection-picked {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 150px;
+  height: 20px;
+  background-color: #0cd;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 0 6px rgba(0,0,0,0.23);
+  color: #fff;
+  transform: rotate(45deg);
+  margin: 20px 0 0 40px;
+  text-align: center;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+}
+
+.book-selection-picked::after {
+  content: "picked"
+} */
+
+
+.book-selected {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 150px;
+  background-color: #0cd;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 0 6px rgba(0,0,0,0.23);
+  color: #fff;
+  transform: rotate(45deg);
+  text-align: center;
+  margin: 20px 0 0 40px;
+  font-size: 0.8rem;
+}
+
+.book-selected .message {
+  font-size: 0.8rem;
+  margin: 2px;
+}
+
 
 /* book cover */
 .book-cover {

@@ -31,14 +31,16 @@ class SearchBook extends Component {
       'Money', 'Mystery', 'Negotiate', 'Painting', 'Philosophy', 'Photography', 'Poetry', 'Production', 'Programming',
       'React', 'Redux', 'River', 'Robotics', 'Rowling', 'Satire', 'Science Fiction', 'Shakespeare', 'Singh', 'Swimming',
       'Tale', 'Thrun', 'Time', 'Tolstoy', 'Travel', 'Ultimate', 'Virtual Reality', 'Web Development', 'iOS'
-    ]
+    ],
+    status: 'selected'
   }
 
 
 
 
   render () {
-    const { books, query, updateQuery, updateShelf, showDetails, selectedBooks } = this.props
+    const { books, query, updateQuery, updateShelf, showDetails } = this.props;
+    const { status } = this.state;
 
     return (
       <div className="search-books">
@@ -64,14 +66,8 @@ class SearchBook extends Component {
                     updateShelf={updateShelf}
                     book={book}
                     showDetails={showDetails}
-                    selectedBooks={selectedBooks}
-
-                    // defaultValue to selected option as first value
-                    // in 'search' view value of shelf is displayed if book is allready selected
-                    // in other case "none" is as default
-                    defaultValue={book.shelf}
-
-
+                    updateQuery={updateQuery}
+                    status={status}
                   />
                   </li>
                 ))
@@ -81,6 +77,7 @@ class SearchBook extends Component {
           )}
 
           {/* query string is needed to check status of of error, inherit searchString state from parent <App> */}
+
           {(books.length === 0 && query === 'empty query') && (
             <div className="no-results">
               <p className="message"><mark>no results</mark></p>

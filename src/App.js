@@ -30,7 +30,6 @@ class App extends Component {
     BooksAPI.getAll()
       .then((books) => {
         this.setState({ stack: books });
-        //console.log(books.map(b => b.shelf))
       })
       .catch(error => console.log(error));
 
@@ -41,8 +40,7 @@ class App extends Component {
     if (query) {
       BooksAPI.search(query).then(books => {
         if (books.error) {
-          this.setState({ searchQuery: [] });
-          this.setState({ searchString: books.error });
+          this.setState({ searchQuery: [], searchString: books.error });
         } else {
           //sync function of shelf status in 'search' view
           this.syncShelf(books);

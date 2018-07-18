@@ -3,9 +3,17 @@ import PlaceHolder from './icons/book-placeholder.svg';
 
 
 class Book extends Component {
+  state = {
+    status: this.props.status,
+    pending: false
+  }
+
   updateShelf = (book, shelf) => {
-    this.props.update(book, shelf);
+    this.setState({ pending: true })
+    this.props.updateShelf(book, shelf);
   };
+
+
   showDetails = (book) => {
     this.props.showDetails(book);
     console.log(`clicked ${book.title}`);
@@ -13,7 +21,9 @@ class Book extends Component {
 
   render () {
 
-    const { book, updateShelf, showDetails } = this.props;
+    const { book, showDetails} = this.props;
+
+    let selected = book.shelf ? 'picked' : 'none'
 
     return (
       <div className="book">
@@ -23,16 +33,21 @@ class Book extends Component {
                 backgroundImage: `url(${book.imageLinks ? book.imageLinks.thumbnail : PlaceHolder})`
               }}>
           </div>
+
+          {/* if book is selected book compnent is marked with 'ribbon' */}
+          {selected === 'picked' && this.state.status === 'selected' && (
+            <div className="book-selected">
+              <p className="message"><mark>picked</mark></p>
+            </div>
+          )}
+
         </div>
         <div className="book-bottom">
-
             <div className="book-title">{book.title}</div>
-
             <div className="book-shelf-changer">
               <select
-                onChange={(event) => updateShelf(book, event.target.value)}
-                // manipulating defaultValue to have different selected option in 'main' and 'search' view
-                defaultValue={this.props.defaultValue ? this.props.defaultValue : 'none'}
+                onChange={(event) => this.updateShelf(book, event.target.value)}
+                defaultValue={book.shelf || 'none'}
               >
                 <option value="move" disabled>Move to...</option>
                 <option value="currentlyReading">Currently Reading</option>
@@ -53,7 +68,16 @@ class Book extends Component {
           >Details...
           </button>
 
+
+          {/* During updating shelf showing update status on book component */}
+          {this.state.pending && this.state.status === 'update' && (
+            <div className="book-update">
+              <p className="message animation"><mark className="loading">updating</mark></p>
+
+            </div>
+          )}
       </div>
+
     )
   }
 }

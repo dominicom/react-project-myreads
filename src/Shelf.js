@@ -2,8 +2,14 @@ import React, { Component } from 'react'
 import Book from './Book'
 
 class Shelf extends Component {
+  state = {
+      status: 'update'
+  }
+
+
   render () {
     const { name, books, shelf, updateShelf, showDetails } = this.props
+    const { status } = this.state
     return (
       <div>
         <div className="bookshelf">
@@ -15,16 +21,13 @@ class Shelf extends Component {
                   <Book
                     books={books}
                     updateShelf={updateShelf}
-                    // defaultValue to selected option as actual shelf value in 'main' view
-                    defaultValue={book.shelf}
                     book={book}
                     showDetails={showDetails}
+                    status={status}
                   />
                 </li>
                 ))
               }
-
-
             </ol>
             {(books.length === 0) && (
               <div className="shelf-status">
