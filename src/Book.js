@@ -31,8 +31,8 @@ class Book extends Component {
             <div className="book-shelf-changer">
               <select
                 onChange={(event) => updateShelf(book, event.target.value)}
-                // manipulating defaultValue to have diffrent selected option in 'main' and 'search' view
-                defaultValue={this.props.defaultValue}
+                // manipulating defaultValue to have different selected option in 'main' and 'search' view
+                defaultValue={this.props.defaultValue ? this.props.defaultValue : 'none'}
               >
                 <option value="move" disabled>Move to...</option>
                 <option value="currentlyReading">Currently Reading</option>

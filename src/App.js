@@ -22,30 +22,42 @@ class App extends Component {
     stack: [],
     searchQuery: [],
     searchString: '',
-    bookDetails: []
+    bookDetails: [],
+    searchResults: []
   };
 
   updateStack = () => {
     BooksAPI.getAll()
       .then((books) => {
         this.setState({ stack: books });
+        //console.log(books.map(b => b.shelf))
       })
       .catch(error => console.log(error));
+
   };
 
   searchResult = (query) => {
+
     if (query) {
       BooksAPI.search(query).then(books => {
         if (books.error) {
           this.setState({ searchQuery: [] });
           this.setState({ searchString: books.error });
         } else {
+          //sync function of shelf status in 'search' view
+          this.syncShelf(books);
+
           this.setState({ searchQuery: books })
         }
-      });
+
+
+      }).catch(error => console.log(error));
+
       this.setState({ searchString: query });
 
+
     } else {
+       //empty query
        this.setState({ searchQuery: [] });
        this.setState({ searchString: '' });
     }
@@ -58,20 +70,36 @@ class App extends Component {
     BooksAPI.update(book, shelf).then(() => {
       console.log(`Moved "${book.title}" to "${shelf}" ID shelf`);
       this.updateStack();
-    })
+    }).catch(error => console.log(error));
   };
+
+
+
+  syncShelf = (books) => {
+    books.map(book => (this.state.stack.filter((b) => b.id === book.id).map(b => book.shelf = b.shelf)))
+  }
+
+
 
   componentDidMount() {
     this.updateStack();
   };
 
+
+  // Open book details popup function when "Details" button is clicked
   showDetails = (book) => {
     this.setState({ bookDetails: book });
   };
 
+
+
+  // Closing book details popup
   closeDetails = () => {
     this.setState({ bookDetails: [] });
   };
+
+
+
 
   render() {
     const { stack , searchQuery, searchString, bookDetails } = this.state
@@ -104,6 +132,7 @@ class App extends Component {
           <main>
           <SearchBook
             books={searchQuery}
+            selectedBooks={stack}
             query={searchString}
             updateQuery={this.searchResult}
             updateShelf={this.updateShelf}
